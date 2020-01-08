@@ -1,0 +1,98 @@
+// global styles for <a> and <p> tags
+$govuk-global-styles: true;
+
+// We can't mount GOV.UK Frontend's assets at root as it's done automatically by the extensions framework.
+$govuk-assets-path: '/govuk/assets/';
+
+// Import GOV.UK Frontend and any extension styles if extensions have been configured
+@import "lib/extensions/extensions";
+
+// Patterns that aren't in Frontend
+@import "patterns/step-by-step-navigation";
+@import "patterns/task-list";
+@import "patterns/related-items";
+
+// Components that aren't in Frontend
+@import "components/cookie-banner";
+
+// Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
+
+.govuk-main-wrapper {
+    padding-top: 0px !important;
+}
+
+.govuk-panel__title {
+    margin-bottom: 10px;
+}
+
+.custom-card-green {
+    background-color: #00703c;
+    color: #FFF;
+    text-align: left;
+    .custom-card-small-text {
+        font-size: 24px;
+    }
+    .custom-card-large-text {
+        font-size: 80px;
+    }
+}
+
+.custom-card-yellow {
+    background-color: #ffdd00;
+    color: $govuk-text-colour;
+    text-align: left;
+    .custom-card-small-text {
+        font-size: 24px;
+    }
+    .custom-card-large-text {
+        font-size: 80px;
+    }
+}
+
+.custom-card-red {
+    background-color: #d4351c;
+    color: #FFF;
+    text-align: left;
+    .custom-card-small-text {
+        font-size: 24px;
+        text-decoration: underline;
+        cursor: pointer;
+        color: #FFFFFF;
+    }
+    .custom-card-small-text:hover {
+        color: govuk-colour('white');
+    }
+    .custom-card-large-text {
+        font-size: 80px;
+    }
+}
+
+.govuk-grid-column-one-half {
+    margin: 0px;
+    padding: 0px;
+}
+
+.govuk-details {
+    margin: 10px 0px 0px 0px;
+    padding: 0px;
+}
+
+/* Create Duplicates of the &.tag for every single sign off status */
+
+strong.govuk-tag {
+    &.tag-signed-off {
+      background-color: govuk-colour('green');
+    }
+    &.tag-awaiting-po-sign-off {
+        background-color: govuk-colour('yellow');
+        color: govuk-colour('black');
+      }
+    &.tag-awaiting-ur {
+        background-color: govuk-colour('yellow');
+        color: govuk-colour('black');
+      }
+    &.tag-td-sign-off {
+        background-color: govuk-colour('yellow');
+        color: govuk-colour('black');
+      }
+   }

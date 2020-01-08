@@ -1,0 +1,243 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+Design and research tracker
+{% endblock %}
+
+{# This is just a basic description of the items in data form #}
+{# You don't have to do this but it just allows me to loop through the items later #}
+{# If you'd prefer, you can create a separate tr in the table for each item manually #}
+
+
+{% set items = [
+
+  { type: 'page-name', id: 'id-name-goes-here', name: 'Name of Page Goes here', ur_confidence: 'High', ur_status: 'Sufficient', sign_off_status: 'Signed-off', css_class: 'signed-off' }
+
+] %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+
+  <main class="govuk-main-wrapper">
+
+    <div class="govuk-grid-row">
+
+      <div class="govuk-!-padding-bottom-7"></div>
+
+      <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">Design and Research Tracker</h1>
+        <a href="#" class="govuk-link" style="font-size: 19px;">View our sign off process</a>
+
+      </div>
+
+      <div class="govuk-grid-column-one-third">
+        <div class="govuk-!-padding-bottom-2"></div>
+        <h1 class="govuk-heading-s">Quick links</h1>
+
+        <details class="govuk-details" data-module="govuk-details" style="margin-left: 5px;">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+
+          </div>
+        </details>
+
+        <details class="govuk-details" data-module="govuk-details" style="margin-left: 5px;">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+
+          </div>
+        </details>
+
+        <div class="govuk-!-padding-bottom-2"></div>
+        <a href="#" class="govuk-link" style="font-size: 19px; margin-left: 30px;">Another link</a>
+      </div>
+
+      <div class="govuk-grid-column-full">
+        <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+      </div>
+
+    </div>
+
+    <div class="govuk-grid-row">
+
+      <div class="govuk-!-padding-bottom-3"></div>
+
+      <!-- Signed-off items -->
+
+      <div class="govuk-grid-column-one-third" style="padding-left: 15px;">
+        <div class="govuk-panel govuk-panel custom-card-green">
+          <h1 class="govuk-panel__title custom-card-large-text">
+            <div class="govuk-panel__body custom-card-small-text">
+              Signed-off items
+            </div>
+            <div class="govuk-!-padding-bottom-5"></div>
+            15
+          </h1>
+        </div>
+      </div>
+
+      <!-- Awaiting Sign-off -->
+
+      <div class="govuk-grid-column-one-third">
+        <div class="govuk-panel govuk-panel custom-card-yellow">
+          <div class="govuk-panel__body custom-card-small-text">
+            Awaiting Sign-off
+          </div>
+          <div class="govuk-!-padding-bottom-5"></div>
+          <h1 class="govuk-panel__title custom-card-large-text">
+            0
+          </h1>
+        </div>
+      </div>
+
+      <!-- Flagged items -->
+
+      <div class="govuk-grid-column-one-third">
+        <div class="govuk-panel govuk-panel custom-card-red">
+          <a href="flagged-items.html">
+            <div class="govuk-panel__body custom-card-small-text">
+              Flagged items
+            </div>
+          </a>
+          <div class="govuk-!-padding-bottom-5"></div>
+          <h1 class="govuk-panel__title custom-card-large-text">
+            4
+          </h1>
+        </div>
+        <div class="govuk-!-padding-bottom-7"></div>
+      </div>
+
+      <!-- Filter Table -->
+
+      {# This is where we wrap everything in a <form> tag and post it back to itself e.g. /basic-filtering #}
+
+      <form action="index" method="POST" role="form" style="padding-left: 15px;">
+
+        <div class="govuk-grid-column-full">
+
+          <div class="govuk-grid-row filters-bar">
+
+            <div class="govuk-form-group govuk-grid-column-one-half govuk-grid-column-one-quarter-from-desktop">
+
+              {# Item Type Selector #}
+
+              {# This is the 'filters bar' #}
+              {# All you really need to care about is the <select> #}
+              {# Notice the name of the <select> is what will be available to us later as data.filter_type  #}
+
+              <label class="govuk-label" for="filter_type">Item type</label>
+
+              <select class="govuk-select" id="filter_type" name="filter_type" style="width: 200px;">
+
+                <option value="all"
+                  {% if not data.filter_type or data.filter_type == 'all' or data.filter == 'reset' %}selected{% endif %}>
+                  All
+                </option>
+
+              </select>
+
+            </div>
+
+            <div class="govuk-grid-column-one-half govuk-grid-column-one-quarter-from-desktop">
+              <div class="govuk-!-padding-bottom-4"></div>
+              <label class="govuk-label">&nbsp;</label>
+              <button class="govuk-button" data-module="govuk-button" name="filter" value="update">Update</button>
+              &nbsp;&nbsp;&nbsp;
+              <button class="govuk-button govuk-button--secondary" data-module="govuk-button" name="filter"
+                value="reset">Reset</button>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="govuk-grid-column-full">
+
+          {# Items table #}
+
+          {# This is the items table #}
+          {# Always show the table... unless we've previously set the 'hide_table' variable to true #}
+
+          {% if not hide_table %}
+
+          <table class="govuk-table items all-items" style="margin: 30px -15px 30px -15px;">
+
+            <thead class="govuk-table__head">
+
+              <tr class="govuk-table__row">
+                <th class="govuk-table__header" scope="col" width="220">Type</th>
+                <th class="govuk-table__header" scope="col" width="120">Layout</th>
+                <th class="govuk-table__header" scope="col" width="140">UR confidence</th>
+                <th class="govuk-table__header" scope="col" width="140">Interaction type</th>
+                <th class="govuk-table__header" scope="col" width="190">Sign-off status</th>
+              </tr>
+
+            </thead>
+
+            <tbody class="govuk-table__body">
+
+              {# Loop through our dataset (array) called items and handle each 'item' at a time... #}
+
+              {% for item in items %}
+
+              {# If data.filter_type is not set #}
+              {# Or if the value of data.filter_type is 'all' #}
+              {# Or if the current item's type is equal to the value of data.filter_type #}
+              {# Or if the current item's interaction is equal to the value of data.filter_type #}
+              {# Then go ahead and show the item - using some of the attributes from the data to make each item dynamic #}
+
+                {% if not data.filter_type or data.filter_type == 'all' or item.type == data.filter_type or data.filter == 'reset' %}
+
+                  {% if not data.filter_interaction or data.filter_interaction == 'all' or item.interaction == data.filter_interaction or data.filter == 'reset' %}
+
+                    {% if not data.filter_layout or data.filter_layout == 'all' or item.layout == data.filter_layout or data.filter == 'reset' %}
+
+                      {% if not data.filter_ur_confidence or data.filter_ur_confidence == 'all' or item.ur_confidence == data.filter_ur_confidence or data.filter == 'reset' %}
+
+                        {% if not data.filter_sign_off_status or data.filter_sign_off_status == 'all' or item.sign_off_status == data.filter_sign_off_status or data.filter == 'reset' %}
+
+                        <tr id="item-{{ item.id }}" class="govuk-table__row">
+                          <td class="govuk-table__cell" style="width: 330px;"><a href="/{{ item.id }}">{{ item.name }}</a></td>
+                          <td class="govuk-table__cell">{{ item.layout }}</td>
+                          <td class="govuk-table__cell">{{ item.ur_confidence }}</td>
+                          <td class="govuk-table__cell" style="width: 150px;">{{ item.interaction }}</td>
+                          <td class="govuk-table__cell"><strong class="govuk-tag tag-{{ item.css_class }}">{{ item.sign_off_status }}</strong></td>
+                        </tr>
+
+                        {% endif %}
+
+                      {% endif %}
+
+                    {% endif %}
+
+                  {% endif %}
+
+                {% endif %}
+
+              {% endfor %}
+
+            </tbody>
+
+          </table>
+
+          {% endif %}
+
+        </div>
+    </div>
+</div>
+</form>
+</div>
+
+</main>
+</div>
+
+{% endblock %}

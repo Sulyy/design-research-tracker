@@ -155,8 +155,8 @@
           <div class="govuk-details__text">
             <a href="#" class="govuk-link">Link to the prototype goes here</a>
             <div class="govuk-!-padding-bottom-4"></div>
-            <p class="govuk-body">Username: prototypeV.1.2</p>
-            <p class="govuk-body">Password: Sjidufh456!</p>
+            <p class="govuk-body">Username: </p>
+            <p class="govuk-body">Password: </p>
           </div>
         </details>
 
@@ -192,7 +192,7 @@
         <div class="govuk-panel govuk-panel custom-card-green">
           <h1 class="govuk-panel__title custom-card-large-text">
             <div class="govuk-panel__body custom-card-small-text">
-              Signed-off items
+              Signed-off pages
             </div>
             <div class="govuk-!-padding-bottom-5"></div>
             15
@@ -241,46 +241,113 @@
 
           <div class="govuk-grid-row filters-bar">
 
+            {# Selectors #}
+
+            {# This is the 'filters bar' #}
+            {# All you really need to care about is the <select> #}
+            {# Notice the name of the <select> is what will be available to us later as data.filter_page  #}
+
+            <!-- Page DropDown -->
+
             <div class="govuk-form-group govuk-grid-column-one-half govuk-grid-column-one-quarter-from-desktop">
 
-              {# Item Type Selector #}
-
-              {# This is the 'filters bar' #}
-              {# All you really need to care about is the <select> #}
-              {# Notice the name of the <select> is what will be available to us later as data.filter_type  #}
+              <!-- Filter selectr for Page -->
 
               <label class="govuk-label" for="filter_page">Page</label>
 
-              <select class="govuk-select" id="filter_page" name="filter_page">
+              <select class="govuk-select" id="filter_page" name="filter_page" style="width: 150px;">
 
                 <!-- This is the default option in the drop down -->
 
-                <option value="all"
-                  {% if not data.filter_page or data.filter_page == 'all' or data.filter == 'reset' %}selected{% endif %}>
-                  All
-                </option>
+                <option value="all" {% if not data.filter_page or data.filter_page == 'all' or data.filter == 'reset' %}selected{% endif %}>All</option>
 
                 <!-- These are the rest of the options within the Page dropdown -->
 
-                <option value="page" {% if data.filter_page == 'login' and data.filter != 'reset' %}selected{% endif %}>Login</option>
-                <option value="page" {% if data.filter_page == 'login' and data.filter != 'reset' %}selected{% endif %}>Account</option>
-                <option value="page" {% if data.filter_page == 'login' and data.filter != 'reset' %}selected{% endif %}>History</option>
-                <option value="page" {% if data.filter_page == 'login' and data.filter != 'reset' %}selected{% endif %}>Payments</option>
-                <option value="page" {% if data.filter_page == 'login' and data.filter != 'reset' %}selected{% endif %}>Orders</option>
+                <option value="Login" {% if data.filter_page == 'login' and data.filter != 'reset' %}selected{% endif %}>Login</option>
+                <option value="Account" {% if data.filter_page == 'account' and data.filter != 'reset' %}selected{% endif %}>Account</option>
+                <option value="History" {% if data.filter_page == 'history' and data.filter != 'reset' %}selected{% endif %}>History</option>
+                <option value="Payments" {% if data.filter_page == 'payments' and data.filter != 'reset' %}selected{% endif %}>Payments</option>
+                <option value="Orders" {% if data.filter_page == 'orders' and data.filter != 'reset' %}selected{% endif %}>Orders</option>
 
               </select>
 
             </div>
 
-            <div class="govuk-grid-column-one-half govuk-grid-column-one-quarter-from-desktop">
-              <div class="govuk-!-padding-bottom-4"></div>
-              <label class="govuk-label">&nbsp;</label>
-              <button class="govuk-button" data-module="govuk-button" name="filter" value="update">Update</button>
-              &nbsp;&nbsp;&nbsp;
-              <button class="govuk-button govuk-button--secondary" data-module="govuk-button" name="filter"
-                value="reset">Reset</button>
+            <!-- UR Confidence DropDown -->
+
+            <div class="govuk-form-group govuk-grid-column-one-half govuk-grid-column-one-quarter-from-desktop">
+
+              <label class="govuk-label" for="filter_ur_confidence">UR confidence</label>
+
+              <select class="govuk-select" id="filter_ur_confidence" name="filter_ur_confidence" style="width: 150px;">
+
+                <!-- This is the default option in the drop down -->
+
+                <option value="all" {% if not data.filter_ur_confidence or data.filter_ur_confidence == 'all' or data.filter == 'reset' %}selected{% endif %}>All</option>
+
+                <!-- These are the rest of the options within the Page dropdown -->
+
+                <option value="High" {% if data.filter_ur_confidence == 'high' and data.filter != 'reset' %}selected{% endif %}>High</option>
+                <option value="Medium" {% if data.filter_ur_confidence == 'medium' and data.filter != 'reset' %}selected{% endif %}>Medium</option>
+                <option value="Low" {% if data.filter_ur_confidence == 'low' and data.filter != 'reset' %}selected{% endif %}>Low</option>
+
+              </select>
+
             </div>
 
+            <!-- UR Status DropDown -->
+
+            <div class="govuk-form-group govuk-grid-column-one-half govuk-grid-column-one-quarter-from-desktop">
+
+              <label class="govuk-label" for="filter_ur_status">UR status</label>
+
+              <select class="govuk-select" id="filter_ur_status" name="filter_ur_status" style="width: 150px;">
+
+              <!-- This is the default option in the drop down -->
+
+              <option value="all" {% if not data.filter_ur_status or data.filter_ur_status == 'all' or data.filter == 'reset' %}selected{% endif %}>All</option>
+
+                <!-- These are the rest of the options within the Page dropdown -->
+
+                <option value="Not started" {% if data.filter_ur_status == 'not-started' and data.filter != 'reset' %}selected{% endif %}>Not started</option>
+                <option value="Ongoing" {% if data.filter_ur_status == 'ongoing' and data.filter != 'reset' %}selected{% endif %}>Ongoing</option>
+                <option value="Sufficient" {% if data.filter_ur_status == 'sufficient' and data.filter != 'reset' %}selected{% endif %}>Sufficient</option>
+
+              </select>
+
+            </div>
+
+            <!-- Sign-off status DropDown -->
+
+            <div class="govuk-form-group govuk-grid-column-one-half govuk-grid-column-one-quarter-from-desktop">
+
+              <label class="govuk-label" for="filter_sign_off_status">Sign-off status</label>
+
+              <select class="govuk-select" id="filter_sign_off_status" name="filter_sign_off_status" style="width: 150px;">
+
+              <!-- This is the default option in the drop down -->
+
+              <option value="all" {% if not data.filter_sign_off_status or data.filter_sign_off_status == 'all' or data.filter == 'reset' %}selected{% endif %}>All</option>
+
+                <!-- These are the rest of the options within the Page dropdown -->
+
+                <option value="Awaiting sign-off" {% if data.filter_sign_off_status == 'awaiting-sign-off' and data.filter != 'reset' %}selected{% endif %}>Awaiting sign-off</option>
+                <option value="Blocked" {% if data.filter_sign_off_status == 'blocked' and data.filter != 'reset' %}selected{% endif %}>Blocked</option>
+                <option value="signed-off" {% if data.filter_sign_off_status == 'signed-off' and data.filter != 'reset' %}selected{% endif %}>Signed-off</option>
+
+              </select>
+
+            </div>
+
+          </div>
+
+          <div class="govuk-grid-column-one-half govuk-grid-column-one-quarter-from-desktop" style="margin-left: -15px;">
+            <div class="govuk-!-padding-bottom-4"></div>
+            <label class="govuk-label">&nbsp;</label>
+            <button class="govuk-button" data-module="govuk-button" name="filter" value="update">Update</button>
+            &nbsp;&nbsp;&nbsp;
+            <button class="govuk-button govuk-button--secondary" data-module="govuk-button" name="filter"
+              value="reset">Reset</button>
           </div>
 
         </div>
@@ -288,9 +355,6 @@
         <div class="govuk-grid-column-full">
 
           {# Items table #}
-
-          {# This is the items table #}
-          {# Always show the table... unless we've previously set the 'hide_table' variable to true #}
 
           {% if not hide_table %}
 
@@ -321,9 +385,11 @@
 
                 {% if not data.filter_page or data.filter_page == 'all' or item.page == data.filter_page or data.filter == 'reset' %}
 
-                      {% if not data.filter_ur_confidence or data.filter_ur_confidence == 'all' or item.ur_confidence == data.filter_ur_confidence or data.filter == 'reset' %}
+                  {% if not data.filter_ur_confidence or data.filter_ur_confidence == 'all' or item.ur_confidence == data.filter_ur_confidence or data.filter == 'reset' %}
 
-                        {% if not data.filter_sign_off_status or data.filter_sign_off_status == 'all' or item.sign_off_status == data.filter_sign_off_status or data.filter == 'reset' %}
+                    {% if not data.filter_ur_status or data.filter_ur_status == 'all' or item.ur_status == data.filter_ur_status or data.filter == 'reset' %}
+
+                      {% if not data.filter_sign_off_status or data.filter_sign_off_status == 'all' or item.sign_off_status == data.filter_sign_off_status or data.filter == 'reset' %}
 
                         <tr id="item-{{ item.id }}" class="govuk-table__row">
                           <td class="govuk-table__cell"><a href="/{{ item.id }}">{{ item.name }}</a></td>
@@ -332,27 +398,26 @@
                           <td class="govuk-table__cell"><strong class="govuk-tag tag-{{ item.css_class }}">{{ item.sign_off_status }}</strong></td>
                         </tr>
 
-                        {% endif %}
+                      {% endif %} <!-- /. data.filter_sign_off_status -->
 
-                      {% endif %}
+                    {% endif %} <!-- /. data.filter_ur_status -->
 
-                  {% endif %}
+                  {% endif %} <!-- /. data.filter_ur_confidence -->
 
-              {% endfor %}
+                {% endif %} <!-- /. data.filter_page -->
+
+              {% endfor %} <!-- /. forLoop -->
 
             </tbody>
 
           </table>
 
-          {% endif %}
+          {% endif %} <!-- /. if not hide_table-->
 
         </div>
+      </div>
     </div>
-</div>
-</form>
-</div>
-
+  </form>
 </main>
-</div>
 
 {% endblock %}

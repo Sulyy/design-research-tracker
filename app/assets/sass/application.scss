@@ -82,17 +82,14 @@ $govuk-assets-path: '/govuk/assets/';
 strong.govuk-tag {
     &.tag-signed-off {
       background-color: govuk-colour('green');
+      color: govuk-colour('white');
     }
-    &.tag-awaiting-po-sign-off {
+    &.tag-awaiting-sign-off {
         background-color: govuk-colour('yellow');
         color: govuk-colour('black');
       }
-    &.tag-awaiting-ur {
-        background-color: govuk-colour('yellow');
-        color: govuk-colour('black');
-      }
-    &.tag-td-sign-off {
-        background-color: govuk-colour('yellow');
-        color: govuk-colour('black');
+    &.tag-blocked {
+        background-color: govuk-colour('red');
+        color: govuk-colour('white');
       }
    }

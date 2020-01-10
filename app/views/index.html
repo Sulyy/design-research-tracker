@@ -69,7 +69,7 @@
 
     {# sign_off_status: This is to track the phase of the design and where it's at with stakeholders or management, it can be either signed-off, awaiting sign-off or blocked. #}
 
-    {# css_class: This is where we inject some CSS into the table, tags when used properly can convey alot of meaning, the css class inherits whatever styles you have made in the application.scss file for a tag class in                  the table (this will make more sense when you see the table at the bottom of this file), the tags can have the same descriptions has the sign_off_status #}
+    {# css_class: This is where we inject some CSS into the table, tags when used properly can convey alot of meaning, the css class inherits whatever styles you have made in the application.scss file for a tag class in the table (this will make more sense when you see the table at the bottom of this file), the tags can have the same descriptions has the sign_off_status #}
 
   {# All of the above generates the table row, this is where you will be editiing information the most, once done, the for loops further down below will take care of adding new rows to the table! #}
 
@@ -89,11 +89,11 @@
 
     { page: 'login', id: 'login-page', name: 'Login page', ur_confidence: 'Low', ur_status: 'Ongoing', sign_off_status: 'signed-off', css_class: 'signed-off' },
 
-    { page: 'account', id: 'account-page', name: 'Account page', ur_confidence: 'Medium', ur_status: 'Ongoing', sign_off_status: 'signed-off', css_class: 'signed-off' },
+    { page: 'account', id: 'account-page', name: 'Account page', ur_confidence: 'Low', ur_status: 'Not-started', sign_off_status: 'awaiting-sign-off', css_class: 'awaiting-sign-off' },
 
     { page: 'history', id: 'history-page', name: 'History page', ur_confidence: 'High', ur_status: 'Sufficient', sign_off_status: 'signed-off', css_class: 'signed-off' },
 
-    { page: 'payments', id: 'payments-page', name: 'Payments page', ur_confidence: 'Low', ur_status: 'Ongoing', sign_off_status: 'signed-off', css_class: 'signed-off' },
+    { page: 'payments', id: 'payments-page', name: 'Payments page', ur_confidence: 'Low', ur_status: 'Not-started', sign_off_status: 'blocked', css_class: 'blocked' },
 
     { page: 'orders', id: 'orders-page', name: 'Orders page', ur_confidence: 'High', ur_status: 'Sufficient', sign_off_status: 'signed-off', css_class: 'signed-off' }
 
@@ -263,11 +263,11 @@
 
                 <!-- These are the rest of the options within the Page dropdown -->
 
-                <option value="Login" {% if data.filter_page == 'login' and data.filter != 'reset' %}selected{% endif %}>Login</option>
-                <option value="Account" {% if data.filter_page == 'account' and data.filter != 'reset' %}selected{% endif %}>Account</option>
-                <option value="History" {% if data.filter_page == 'history' and data.filter != 'reset' %}selected{% endif %}>History</option>
-                <option value="Payments" {% if data.filter_page == 'payments' and data.filter != 'reset' %}selected{% endif %}>Payments</option>
-                <option value="Orders" {% if data.filter_page == 'orders' and data.filter != 'reset' %}selected{% endif %}>Orders</option>
+                <option value="login" {% if data.filter_page == 'login' and data.filter != 'reset' %}selected{% endif %}>Login</option>
+                <option value="account" {% if data.filter_page == 'account' and data.filter != 'reset' %}selected{% endif %}>Account</option>
+                <option value="history" {% if data.filter_page == 'history' and data.filter != 'reset' %}selected{% endif %}>History</option>
+                <option value="payments" {% if data.filter_page == 'payments' and data.filter != 'reset' %}selected{% endif %}>Payments</option>
+                <option value="orders" {% if data.filter_page == 'orders' and data.filter != 'reset' %}selected{% endif %}>Orders</option>
 
               </select>
 
@@ -287,9 +287,9 @@
 
                 <!-- These are the rest of the options within the Page dropdown -->
 
-                <option value="High" {% if data.filter_ur_confidence == 'high' and data.filter != 'reset' %}selected{% endif %}>High</option>
-                <option value="Medium" {% if data.filter_ur_confidence == 'medium' and data.filter != 'reset' %}selected{% endif %}>Medium</option>
-                <option value="Low" {% if data.filter_ur_confidence == 'low' and data.filter != 'reset' %}selected{% endif %}>Low</option>
+                <option value="high" {% if data.filter_ur_confidence == 'high' and data.filter != 'reset' %}selected{% endif %}>High</option>
+                <option value="medium" {% if data.filter_ur_confidence == 'medium' and data.filter != 'reset' %}selected{% endif %}>Medium</option>
+                <option value="low" {% if data.filter_ur_confidence == 'low' and data.filter != 'reset' %}selected{% endif %}>Low</option>
 
               </select>
 
@@ -309,9 +309,9 @@
 
                 <!-- These are the rest of the options within the Page dropdown -->
 
-                <option value="Not started" {% if data.filter_ur_status == 'not-started' and data.filter != 'reset' %}selected{% endif %}>Not started</option>
-                <option value="Ongoing" {% if data.filter_ur_status == 'ongoing' and data.filter != 'reset' %}selected{% endif %}>Ongoing</option>
-                <option value="Sufficient" {% if data.filter_ur_status == 'sufficient' and data.filter != 'reset' %}selected{% endif %}>Sufficient</option>
+                <option value="Not-started" {% if data.filter_ur_status == 'Not-started' and data.filter != 'reset' %}selected{% endif %}>Not started</option>
+                <option value="Ongoing" {% if data.filter_ur_status == 'Ongoing' and data.filter != 'reset' %}selected{% endif %}>Ongoing</option>
+                <option value="Sufficient" {% if data.filter_ur_status == 'Sufficient' and data.filter != 'reset' %}selected{% endif %}>Sufficient</option>
 
               </select>
 
@@ -331,8 +331,8 @@
 
                 <!-- These are the rest of the options within the Page dropdown -->
 
-                <option value="Awaiting sign-off" {% if data.filter_sign_off_status == 'awaiting-sign-off' and data.filter != 'reset' %}selected{% endif %}>Awaiting sign-off</option>
-                <option value="Blocked" {% if data.filter_sign_off_status == 'blocked' and data.filter != 'reset' %}selected{% endif %}>Blocked</option>
+                <option value="awaiting-sign-off" {% if data.filter_sign_off_status == 'awaiting-sign-off' and data.filter != 'reset' %}selected{% endif %}>Awaiting sign-off</option>
+                <option value="blocked" {% if data.filter_sign_off_status == 'blocked' and data.filter != 'reset' %}selected{% endif %}>Blocked</option>
                 <option value="signed-off" {% if data.filter_sign_off_status == 'signed-off' and data.filter != 'reset' %}selected{% endif %}>Signed-off</option>
 
               </select>
@@ -395,7 +395,7 @@
                           <td class="govuk-table__cell"><a href="/{{ item.id }}">{{ item.name }}</a></td>
                           <td class="govuk-table__cell">{{ item.ur_confidence }}</td>
                           <td class="govuk-table__cell">{{ item.ur_status }}</td>
-                          <td class="govuk-table__cell"><strong class="govuk-tag tag-{{ item.css_class }}">{{ item.sign_off_status }}</strong></td>
+                          <td class="govuk-table__cell" style="width: 190px;"><strong class="govuk-tag tag-{{ item.css_class }}">{{ item.sign_off_status }}</strong></td>
                         </tr>
 
                       {% endif %} <!-- /. data.filter_sign_off_status -->

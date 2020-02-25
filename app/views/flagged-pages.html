@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+RBA Design Pack
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-!-padding-bottom-5"></div>
+    <div class="govuk-grid-column-full">
+        <div class="govuk-breadcrumbs">
+            <ol class="govuk-breadcrumbs__list">
+                <li class="govuk-breadcrumbs__list-item">
+                    <a class="govuk-breadcrumbs__link" href="index.html">Home</a>
+                </li>
+                <li class="govuk-breadcrumbs__list-item" aria-current="page">
+                    flagged pages
+                </li>
+            </ol>
+            <div class="govuk-!-margin-bottom-5"></div>
+        </div>
+    </div>
+
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-xl">
+            Flagged pages
+        </h1>
+
+        <!--
+            Main Content Start
+        -->
+
+        <p class="govuk-body-l">Those screens that are blocked, have severe usability ratings and haven’t been taken out
+            for user research.</p>
+
+        <table class="govuk-table">
+            <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header">Page</th>
+                    <th scope="col" class="govuk-table__header">Flag description</th>
+                </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+
+                    <th class="govuk-table__cell" style="font-weight: normal;">
+                        <a href="payments.html">Payments</a>
+                    </th>
+
+                    <td class="govuk-table__cell">
+                        <strong class="govuk-tag red-tag">blocked</strong>&nbsp;&nbsp;&nbsp;Additional requirements
+                        needed to complete
+                        wireframes and protoyping of this page
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <script>
+        var toToplink = document.getElementById("toTopLink");
+
+        // When a user clicks the link, they will go back to the top of the current page they are on
+        function backToTop() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
+
+    {% endblock %}

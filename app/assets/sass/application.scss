@@ -29,9 +29,11 @@ $govuk-assets-path: '/govuk/assets/';
     background-color: #00703c;
     color: #FFF;
     text-align: left;
+
     .custom-card-small-text {
         font-size: 24px;
     }
+
     .custom-card-large-text {
         font-size: 80px;
     }
@@ -41,9 +43,11 @@ $govuk-assets-path: '/govuk/assets/';
     background-color: #ffdd00;
     color: $govuk-text-colour;
     text-align: left;
+
     .custom-card-small-text {
         font-size: 24px;
     }
+
     .custom-card-large-text {
         font-size: 80px;
     }
@@ -53,15 +57,18 @@ $govuk-assets-path: '/govuk/assets/';
     background-color: #d4351c;
     color: #FFF;
     text-align: left;
+
     .custom-card-small-text {
         font-size: 24px;
         text-decoration: underline;
         cursor: pointer;
         color: #FFFFFF;
     }
+
     .custom-card-small-text:hover {
         color: govuk-colour('white');
     }
+
     .custom-card-large-text {
         font-size: 80px;
     }
@@ -79,17 +86,39 @@ $govuk-assets-path: '/govuk/assets/';
 
 /* Create Duplicates of the &.tag for every single sign off status */
 
+.img-responsive {
+    width: 100%;
+    height: auto;
+}
+
+.green-tag {
+    background-color: govuk-colour("green");
+    color: govuk-colour("white");
+}
+
+.yellow-tag {
+    background-color: govuk-colour("yellow");
+    color: govuk-colour("black");
+}
+
+.red-tag {
+    background-color: govuk-colour("red");
+    color: govuk-colour("white");
+}
+
 strong.govuk-tag {
     &.tag-signed-off {
-      background-color: govuk-colour('green');
-      color: govuk-colour('white');
+        background-color: govuk-colour('green');
+        color: govuk-colour('white');
     }
+
     &.tag-awaiting-sign-off {
         background-color: govuk-colour('yellow');
         color: govuk-colour('black');
-      }
+    }
+
     &.tag-blocked {
         background-color: govuk-colour('red');
         color: govuk-colour('white');
-      }
-   }
+    }
+}

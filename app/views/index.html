@@ -41,65 +41,65 @@
 
 {% extends "layout.html" %}
 
-  {# Customise the page title here #}
+{# Customise the page title here #}
 
-  {% block pageTitle %}
-    Design and research tracker
-  {% endblock %}
+{% block pageTitle %}
+Design and research tracker
+{% endblock %}
 
-  {# READ THE COMMENTS BELOW TO UNDERSTAND HOW THE TABLE WORKS #}
+{# READ THE COMMENTS BELOW TO UNDERSTAND HOW THE TABLE WORKS #}
 
-    {# Below is an array, a breakdown of the details of each of your items in data form. You can add any sort of identifier within the array along with it's description. #}
+{# Below is an array, a breakdown of the details of each of your items in data form. You can add any sort of identifier within the array along with it's description. #}
 
-    {# The benefit of using the array below is, when you add more and more items here, the table at the bottom of this page, will constantly loop through this array. This means that any new items added ... #}
+{# The benefit of using the array below is, when you add more and more items here, the table at the bottom of this page, will constantly loop through this array. This means that any new items added ... #}
 
-    {# ... will automatically be added into the table as a new row! #}
+{# ... will automatically be added into the table as a new row! #}
 
-  {# EXAMPLE IDENTIFERS USED IN THE ARRAY EXPLANATION #}
+{# EXAMPLE IDENTIFERS USED IN THE ARRAY EXPLANATION #}
 
-    {# page = This is the high-level categorisation of the screen you want to add, for e.g. page = login can encapsulate the login page, forgotten password and sign-up, they would all share the same page = 'login' #}
+{# page = This is the high-level categorisation of the screen you want to add, for e.g. page = login can encapsulate the login page, forgotten password and sign-up, they would all share the same page = 'login' #}
 
-    {# id = In the array below is used as the unique page URL, it doesn't need the .html e.g. id: 'login-page', id: 'sign-up-page', id: 'forgotten-password-page' #}
+{# id = In the array below is used as the unique page URL, it doesn't need the .html e.g. id: 'login-page', id: 'sign-up-page', id: 'forgotten-password-page' #}
 
-    {# name = The name is the information that is displayed in the table row, this will be the name of the page. Can either be lower case or upper e.g. name: 'Login Page' name: 'Sign-up Page' #}
+{# name = The name is the information that is displayed in the table row, this will be the name of the page. Can either be lower case or upper e.g. name: 'Login Page' name: 'Sign-up Page' #}
 
-    {# ur_confidence: This is where research insights are plugged into the table, this is where you will add the flag of low, medium or high for the confidence level of a specific page. #}
+{# ur_confidence: This is where research insights are plugged into the table, this is where you will add the flag of low, medium or high for the confidence level of a specific page. #}
 
-    {# ur_status: This is another research insight identifying if there is a sufficient amount of research done for a specific page, theres either sufficient, ongoing or not started. #}
+{# ur_status: This is another research insight identifying if there is a sufficient amount of research done for a specific page, theres either sufficient, ongoing or not started. #}
 
-    {# sign_off_status: This is to track the phase of the design and where it's at with stakeholders or management, it can be either signed-off, awaiting sign-off or blocked. #}
+{# sign_off_status: This is to track the phase of the design and where it's at with stakeholders or management, it can be either signed-off, awaiting sign-off or blocked. #}
 
-    {# css_class: This is where we inject some CSS into the table, tags when used properly can convey alot of meaning, the css class inherits whatever styles you have made in the application.scss file for a tag class in the table (this will make more sense when you see the table at the bottom of this file), the tags can have the same descriptions has the sign_off_status #}
+{# css_class: This is where we inject some CSS into the table, tags when used properly can convey alot of meaning, the css class inherits whatever styles you have made in the application.scss file for a tag class in the table (this will make more sense when you see the table at the bottom of this file), the tags can have the same descriptions has the sign_off_status #}
 
-  {# All of the above generates the table row, this is where you will be editiing information the most, once done, the for loops further down below will take care of adding new rows to the table! #}
+{# All of the above generates the table row, this is where you will be editiing information the most, once done, the for loops further down below will take care of adding new rows to the table! #}
 
-  {# BEST PRACTICE WHEN ADDING NEW ITEMS INTO THE ARRAY #}
+{# BEST PRACTICE WHEN ADDING NEW ITEMS INTO THE ARRAY #}
 
-    {# Try to stick to using lower case for text that is not being displayed in the table #}
+{# Try to stick to using lower case for text that is not being displayed in the table #}
 
-    {# For each new row you want in the table, add a comma after the ending curly bracket #}
+{# For each new row you want in the table, add a comma after the ending curly bracket #}
 
-    {# The final item within the array you can't have a comma after the curly bracket, trust me, I spent HOURS de-bugging to realise that. #}
+{# The final item within the array you can't have a comma after the curly bracket, trust me, I spent HOURS de-bugging to realise that. #}
 
-    {# Add commas after each identifier, e.g. page: 'login', name: 'Login page', ... #}
+{# Add commas after each identifier, e.g. page: 'login', name: 'Login page', ... #}
 
-  {# ARRAY START #}
+{# ARRAY START #}
 
-  {% set items = [
+{% set items = [
 
-    { page: 'login', id: 'login-page', name: 'Login page', ur_confidence: 'Low', ur_status: 'Ongoing', sign_off_status: 'signed-off', css_class: 'signed-off' },
+    { page: 'Login', id: 'login-page', name: 'Login page', ur_confidence: 'Low', ur_status: 'Ongoing', sign_off_status: 'signed-off', css_class: 'signed-off' },
 
-    { page: 'account', id: 'account-page', name: 'Account page', ur_confidence: 'Low', ur_status: 'Not-started', sign_off_status: 'awaiting-sign-off', css_class: 'awaiting-sign-off' },
+    { page: 'Account', id: 'account-page', name: 'Account page', ur_confidence: 'Low', ur_status: 'Not-started', sign_off_status: 'awaiting-sign-off', css_class: 'awaiting-sign-off' },
 
-    { page: 'history', id: 'history-page', name: 'History page', ur_confidence: 'High', ur_status: 'Sufficient', sign_off_status: 'signed-off', css_class: 'signed-off' },
+    { page: 'History', id: 'history-page', name: 'History page', ur_confidence: 'High', ur_status: 'Sufficient', sign_off_status: 'signed-off', css_class: 'signed-off' },
 
-    { page: 'payments', id: 'payments-page', name: 'Payments page', ur_confidence: 'Low', ur_status: 'Not-started', sign_off_status: 'blocked', css_class: 'blocked' },
+    { page: 'Payments', id: 'payments-page', name: 'Payments page', ur_confidence: 'Low', ur_status: 'Not-started', sign_off_status: 'blocked', css_class: 'blocked' },
 
-    { page: 'orders', id: 'orders-page', name: 'Orders page', ur_confidence: 'High', ur_status: 'Sufficient', sign_off_status: 'signed-off', css_class: 'signed-off' }
+    { page: 'Orders', id: 'orders-page', name: 'Orders page', ur_confidence: 'High', ur_status: 'Sufficient', sign_off_status: 'signed-off', css_class: 'signed-off' }
 
   ] %}
 
-  {# ARRAY FINISH #}
+{# ARRAY FINISH #}
 
 {% block content %}
 
@@ -259,15 +259,23 @@
 
                 <!-- This is the default option in the drop down -->
 
-                <option value="all" {% if not data.filter_page or data.filter_page == 'all' or data.filter == 'reset' %}selected{% endif %}>All</option>
+                <option value="all"
+                  {% if not data.filter_page or data.filter_page == 'all' or data.filter == 'reset' %}selected{% endif %}>
+                  All</option>
 
                 <!-- These are the rest of the options within the Page dropdown -->
 
-                <option value="login" {% if data.filter_page == 'login' and data.filter != 'reset' %}selected{% endif %}>Login</option>
-                <option value="account" {% if data.filter_page == 'account' and data.filter != 'reset' %}selected{% endif %}>Account</option>
-                <option value="history" {% if data.filter_page == 'history' and data.filter != 'reset' %}selected{% endif %}>History</option>
-                <option value="payments" {% if data.filter_page == 'payments' and data.filter != 'reset' %}selected{% endif %}>Payments</option>
-                <option value="orders" {% if data.filter_page == 'orders' and data.filter != 'reset' %}selected{% endif %}>Orders</option>
+                <option value="Login"
+                  {% if data.filter_page == 'login' and data.filter != 'reset' %}selected{% endif %}>Login</option>
+                <option value="Account"
+                  {% if data.filter_page == 'account' and data.filter != 'reset' %}selected{% endif %}>Account</option>
+                <option value="History"
+                  {% if data.filter_page == 'history' and data.filter != 'reset' %}selected{% endif %}>History</option>
+                <option value="Payments"
+                  {% if data.filter_page == 'payments' and data.filter != 'reset' %}selected{% endif %}>Payments
+                </option>
+                <option value="Orders"
+                  {% if data.filter_page == 'orders' and data.filter != 'reset' %}selected{% endif %}>Orders</option>
 
               </select>
 
@@ -283,13 +291,20 @@
 
                 <!-- This is the default option in the drop down -->
 
-                <option value="all" {% if not data.filter_ur_confidence or data.filter_ur_confidence == 'all' or data.filter == 'reset' %}selected{% endif %}>All</option>
+                <option value="all"
+                  {% if not data.filter_ur_confidence or data.filter_ur_confidence == 'all' or data.filter == 'reset' %}selected{% endif %}>
+                  All</option>
 
                 <!-- These are the rest of the options within the Page dropdown -->
 
-                <option value="high" {% if data.filter_ur_confidence == 'high' and data.filter != 'reset' %}selected{% endif %}>High</option>
-                <option value="medium" {% if data.filter_ur_confidence == 'medium' and data.filter != 'reset' %}selected{% endif %}>Medium</option>
-                <option value="low" {% if data.filter_ur_confidence == 'low' and data.filter != 'reset' %}selected{% endif %}>Low</option>
+                <option value="High"
+                  {% if data.filter_ur_confidence == 'high' and data.filter != 'reset' %}selected{% endif %}>High
+                </option>
+                <option value="Medium"
+                  {% if data.filter_ur_confidence == 'medium' and data.filter != 'reset' %}selected{% endif %}>Medium
+                </option>
+                <option value="Low"
+                  {% if data.filter_ur_confidence == 'low' and data.filter != 'reset' %}selected{% endif %}>Low</option>
 
               </select>
 
@@ -303,15 +318,23 @@
 
               <select class="govuk-select" id="filter_ur_status" name="filter_ur_status" style="width: 150px;">
 
-              <!-- This is the default option in the drop down -->
+                <!-- This is the default option in the drop down -->
 
-              <option value="all" {% if not data.filter_ur_status or data.filter_ur_status == 'all' or data.filter == 'reset' %}selected{% endif %}>All</option>
+                <option value="all"
+                  {% if not data.filter_ur_status or data.filter_ur_status == 'all' or data.filter == 'reset' %}selected{% endif %}>
+                  All</option>
 
                 <!-- These are the rest of the options within the Page dropdown -->
 
-                <option value="Not-started" {% if data.filter_ur_status == 'Not-started' and data.filter != 'reset' %}selected{% endif %}>Not started</option>
-                <option value="Ongoing" {% if data.filter_ur_status == 'Ongoing' and data.filter != 'reset' %}selected{% endif %}>Ongoing</option>
-                <option value="Sufficient" {% if data.filter_ur_status == 'Sufficient' and data.filter != 'reset' %}selected{% endif %}>Sufficient</option>
+                <option value="Not-started"
+                  {% if data.filter_ur_status == 'Not-started' and data.filter != 'reset' %}selected{% endif %}>Not
+                  started</option>
+                <option value="Ongoing"
+                  {% if data.filter_ur_status == 'Ongoing' and data.filter != 'reset' %}selected{% endif %}>Ongoing
+                </option>
+                <option value="Sufficient"
+                  {% if data.filter_ur_status == 'Sufficient' and data.filter != 'reset' %}selected{% endif %}>
+                  Sufficient</option>
 
               </select>
 
@@ -323,17 +346,26 @@
 
               <label class="govuk-label" for="filter_sign_off_status">Sign-off status</label>
 
-              <select class="govuk-select" id="filter_sign_off_status" name="filter_sign_off_status" style="width: 150px;">
+              <select class="govuk-select" id="filter_sign_off_status" name="filter_sign_off_status"
+                style="width: 150px;">
 
-              <!-- This is the default option in the drop down -->
+                <!-- This is the default option in the drop down -->
 
-              <option value="all" {% if not data.filter_sign_off_status or data.filter_sign_off_status == 'all' or data.filter == 'reset' %}selected{% endif %}>All</option>
+                <option value="all"
+                  {% if not data.filter_sign_off_status or data.filter_sign_off_status == 'all' or data.filter == 'reset' %}selected{% endif %}>
+                  All</option>
 
                 <!-- These are the rest of the options within the Page dropdown -->
 
-                <option value="awaiting-sign-off" {% if data.filter_sign_off_status == 'awaiting-sign-off' and data.filter != 'reset' %}selected{% endif %}>Awaiting sign-off</option>
-                <option value="blocked" {% if data.filter_sign_off_status == 'blocked' and data.filter != 'reset' %}selected{% endif %}>Blocked</option>
-                <option value="signed-off" {% if data.filter_sign_off_status == 'signed-off' and data.filter != 'reset' %}selected{% endif %}>Signed-off</option>
+                <option value="awaiting-sign-off"
+                  {% if data.filter_sign_off_status == 'awaiting-sign-off' and data.filter != 'reset' %}selected{% endif %}>
+                  Awaiting sign-off</option>
+                <option value="blocked"
+                  {% if data.filter_sign_off_status == 'blocked' and data.filter != 'reset' %}selected{% endif %}>
+                  Blocked</option>
+                <option value="signed-off"
+                  {% if data.filter_sign_off_status == 'signed-off' and data.filter != 'reset' %}selected{% endif %}>
+                  Signed-off</option>
 
               </select>
 
@@ -341,7 +373,8 @@
 
           </div>
 
-          <div class="govuk-grid-column-one-half govuk-grid-column-one-quarter-from-desktop" style="margin-left: -15px;">
+          <div class="govuk-grid-column-one-half govuk-grid-column-one-quarter-from-desktop"
+            style="margin-left: -15px;">
             <div class="govuk-!-padding-bottom-4"></div>
             <label class="govuk-label">&nbsp;</label>
             <button class="govuk-button" data-module="govuk-button" name="filter" value="update">Update</button>
@@ -383,41 +416,48 @@
               {# Or if the current item's interaction is equal to the value of data.filter_type #}
               {# Then go ahead and show the item - using some of the attributes from the data to make each item dynamic #}
 
-                {% if not data.filter_page or data.filter_page == 'all' or item.page == data.filter_page or data.filter == 'reset' %}
+              {% if not data.filter_page or data.filter_page == 'all' or item.page == data.filter_page or data.filter == 'reset' %}
 
-                  {% if not data.filter_ur_confidence or data.filter_ur_confidence == 'all' or item.ur_confidence == data.filter_ur_confidence or data.filter == 'reset' %}
+              {% if not data.filter_ur_confidence or data.filter_ur_confidence == 'all' or item.ur_confidence == data.filter_ur_confidence or data.filter == 'reset' %}
 
-                    {% if not data.filter_ur_status or data.filter_ur_status == 'all' or item.ur_status == data.filter_ur_status or data.filter == 'reset' %}
+              {% if not data.filter_ur_status or data.filter_ur_status == 'all' or item.ur_status == data.filter_ur_status or data.filter == 'reset' %}
 
-                      {% if not data.filter_sign_off_status or data.filter_sign_off_status == 'all' or item.sign_off_status == data.filter_sign_off_status or data.filter == 'reset' %}
+              {% if not data.filter_sign_off_status or data.filter_sign_off_status == 'all' or item.sign_off_status == data.filter_sign_off_status or data.filter == 'reset' %}
 
-                        <tr id="item-{{ item.id }}" class="govuk-table__row">
-                          <td class="govuk-table__cell"><a href="/{{ item.id }}">{{ item.name }}</a></td>
-                          <td class="govuk-table__cell">{{ item.ur_confidence }}</td>
-                          <td class="govuk-table__cell">{{ item.ur_status }}</td>
-                          <td class="govuk-table__cell" style="width: 190px;"><strong class="govuk-tag tag-{{ item.css_class }}">{{ item.sign_off_status }}</strong></td>
-                        </tr>
+              <tr id="item-{{ item.id }}" class="govuk-table__row">
+                <td class="govuk-table__cell"><a href="/{{ item.id }}">{{ item.name }}</a></td>
+                <td class="govuk-table__cell">{{ item.ur_confidence }}</td>
+                <td class="govuk-table__cell">{{ item.ur_status }}</td>
+                <td class="govuk-table__cell" style="width: 190px;"><strong
+                    class="govuk-tag tag-{{ item.css_class }}">{{ item.sign_off_status }}</strong></td>
+              </tr>
 
-                      {% endif %} <!-- /. data.filter_sign_off_status -->
+              {% endif %}
+              <!-- /. data.filter_sign_off_status -->
 
-                    {% endif %} <!-- /. data.filter_ur_status -->
+              {% endif %}
+              <!-- /. data.filter_ur_status -->
 
-                  {% endif %} <!-- /. data.filter_ur_confidence -->
+              {% endif %}
+              <!-- /. data.filter_ur_confidence -->
 
-                {% endif %} <!-- /. data.filter_page -->
+              {% endif %}
+              <!-- /. data.filter_page -->
 
-              {% endfor %} <!-- /. forLoop -->
+              {% endfor %}
+              <!-- /. forLoop -->
 
             </tbody>
 
           </table>
 
-          {% endif %} <!-- /. if not hide_table-->
+          {% endif %}
+          <!-- /. if not hide_table-->
 
         </div>
-      </div>
     </div>
-  </form>
+</div>
+</form>
 </main>
 
 {% endblock %}
